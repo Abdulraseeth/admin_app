@@ -1,19 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": false
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "coreui-free-angular-admin-template": {
+    "material-pro-angular-lite": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -21,51 +15,49 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/coreui-free-angular-admin-template",
+            "allowedCommonJsDependencies": [
+              "apexcharts"
+            ],
+            "outputPath": "dist/material-pro-angular-lite",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
-              "@angular/localize/init",
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "preserveSymlinks": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/scss/styles.scss"
+              "src/assets/styles/style.scss",
+              "src/styles.scss"
             ],
-            "scripts": [],
-            "allowedCommonJsDependencies": [],
-            "stylePreprocessorOptions": {
-              "sass": {
-                "silenceDeprecations": ["import"]
-              }
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "6mb",
-                  "maximumError": "7mb"
+                  "maximumWarning": "500mb",
+                  "maximumError": "500mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "500mb",
+                  "maximumError": "500mb"
                 }
               ],
               "outputHashing": "all"
             },
             "development": {
+              "buildOptimizer": false,
               "optimization": false,
+              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -77,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "coreui-free-angular-admin-template:build:production"
+              "browserTarget": "material-pro-angular-lite:build:production"
             },
             "development": {
-              "buildTarget": "coreui-free-angular-admin-template:build:development"
+              "browserTarget": "material-pro-angular-lite:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "coreui-free-angular-admin-template:build"
+            "browserTarget": "material-pro-angular-lite:build"
           }
         },
         "test": {
@@ -99,19 +91,21 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/scss/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
