@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserComponent } from './master/user/user.component';
+import { UserFormComponent } from './master/user/user-form/user-form.component';
 
 export const AppRoutes: Routes = [
   {
@@ -20,7 +23,15 @@ export const AppRoutes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-      }
+      },
+      {
+        path: 'user',
+        component : UserComponent
+      },
+      {
+        path: 'user-add',
+        component : UserFormComponent
+      },
     ]
   }
 ];
